@@ -4,6 +4,8 @@
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
+(package-initialize)
+
 (global-set-key [f6] 'magit-status)
 
 (setq cua-enable-cua-keys nil) ;; only for rectangles
@@ -21,12 +23,14 @@
    (js . t)
    ))
 
+(require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define-global "xo" 'other-window)
-(key-chord-define-global "s-s" 'save-buffer)
 (key-chord-define-global "zc" 'insert-console-log)
 (key-chord-define-global "jf" 'insert-js-fn)
 (key-chord-define-global "lb" 'list-buffers)
+(key-chord-define-global "kb" 'list-buffers)
+
 ; http://www.emacswiki.org/emacs/WindowResize
 (key-chord-define-global "z=" 'enlarge-window-horizontally)
 (key-chord-define-global "z-" 'shrink-window-horizontally)
@@ -38,6 +42,13 @@
 (global-set-key (kbd "s-o") 'other-window)
 (global-set-key (kbd "C-x C-x") 'nothing)
 
+(defun mouse-drag-track ()
+  (interactive)
+  (message "no mouse highlight for you!"))
+
+(defun mouse-set-point ()
+  (interactive)
+  (message "no mouse for you!"))
 
 (defun insert-console-log ()
   "Insert 'console.log' into buffer"
@@ -71,4 +82,3 @@
 (alt-colors-1)
   
 (set-face-attribute 'default nil :height 150)
-
